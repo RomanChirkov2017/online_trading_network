@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from trading_network.models import Element, Product, Contacts
+from trading_network.pagination import ProductPagination
 from trading_network.permissions import IsActiveEmployee
 from trading_network.serializers import ElementSerializer, ProductSerializer, ContactSerializer
 
@@ -32,6 +33,7 @@ class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [IsActiveEmployee]
+    pagination_class = ProductPagination
 
 
 class ContactsViewSet(ModelViewSet):
