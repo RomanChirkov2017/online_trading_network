@@ -1,5 +1,6 @@
 from django.db import models
 
+# определение переменной для удобства работы с полями модели
 NULLABLE = {'blank': True, 'null': True}
 
 
@@ -17,9 +18,9 @@ class Element(models.Model):
     )
 
     LEVEL_CHOICES = (
-        ('ZERO', '0'),
-        ('ONE', '1'),
-        ('TWO', '2'),
+        (0, 0),
+        (1, 1),
+        (2, 2),
     )
 
     title = models.CharField(max_length=150, unique=True, verbose_name='Название')
@@ -30,9 +31,18 @@ class Element(models.Model):
     date_of_creation = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
 
     def __str__(self):
+        """
+        Метод __str__ возвращает текстовое представление экземпляра модели.
+        """
+
         return self.title
 
     class Meta:
+        """
+        Класс Meta содержит общее имя экземпляра модели в единственном и множественном числе
+        в панели администрирования.
+        """
+
         verbose_name = 'Элемент сети'
         verbose_name_plural = 'Элементы сети'
 
@@ -52,9 +62,18 @@ class Contacts(models.Model):
     house = models.CharField(max_length=5, **NULLABLE, verbose_name='Дом')
 
     def __str__(self):
+        """
+        Метод __str__ возвращает текстовое представление экземпляра модели.
+        """
+
         return f'{self.unit.title} - контакты'
 
     class Meta:
+        """
+        Класс Meta содержит общее имя экземпляра модели в единственном и множественном числе
+        в панели администрирования.
+        """
+
         verbose_name = 'Контакт'
         verbose_name_plural = 'Контакты'
 
@@ -73,9 +92,18 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name='Цена')
 
     def __str__(self):
+        """
+        Метод __str__ возвращает текстовое представление экземпляра модели.
+        """
+
         return self.title
 
     class Meta:
+        """
+        Класс Meta содержит общее имя экземпляра модели в единственном и множественном числе
+        в панели администрирования.
+        """
+
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
         ordering = ['title',]
